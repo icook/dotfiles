@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+import base64
+import binascii
+import os
+import argparse
+
+parser = argparse.ArgumentParser(prog='a random password generator utility')
+parser.add_argument('-x', '--hex', action="store_true", default=False,
+                    help="Generate the password only using hexadecimal character set")
+parser.add_argument('-b', '--base62', action="store_true", default=True,
+                    help="Generate the password only using base58 character set")
+parser.add_argument('-l', '--length', type=int, default=20)
+
+args = parser.parse_args()
+if args.base62:
+    print(''.join(ch for ch in base64.b64encode(os.urandom(200)) if ch.isalnum())[:args.length])
+elif args.hex:
+    print(binascii.hexlify(os.urandom(200))[:args.length])

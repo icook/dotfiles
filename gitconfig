@@ -1,0 +1,19 @@
+[core]
+	editor = vim
+[color]
+	ui = true
+[user]
+	name = Isaac Cook
+	email = isaac@simpload.com
+[alias]
+    l = log --decorate --graph --date=relative --pretty=\"format:%ad %C(yellow)%h%C(green)%d%Creset%n%C(white)%B%Creset\"
+    rec = !git --no-pager log -10 --decorate --graph --date=relative --pretty=\"format:%ad %C(yellow)%h%C(green)%d%Creset%n%C(white)%B%Creset\"
+    taglist = tag -l -n1
+    slist = !git --no-pager stash list --decorate --pretty=\"format:%C(yellow)->%C(red) %gd%Creset%x09%ar%x09%d%n%C(white)%B%Creset\"
+    ssave = stash save
+    spop = "!f() { git --no-pager stash pop stash@{$1} -p --stat; }; f"
+    sdrop = "!f() { git --no-pager stash drop stash@{$1} -p --stat; }; f"
+    sshow = "!f() { git stash show stash@{$1} -p --stat; }; f"
+    sfind = "!f() { git --no-pager stash show stash^{/$*} -p --stat; }; f"
+[branch]
+	autosetuprebase = always
