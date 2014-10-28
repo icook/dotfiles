@@ -20,7 +20,7 @@ alias pkilla="pkill -fe --signal 9"
 alias rl=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias vzsh="vim ~/.zshrc"
 alias bower='noglob bower'
-alias gaa='git add -A'
+alias gaa='git add -A && git status'
 
 export GOPATH=$HOME/programming/go
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"

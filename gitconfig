@@ -17,3 +17,5 @@
     sfind = "!f() { git --no-pager stash show stash^{/$*} -p --stat; }; f"
 [branch]
 	autosetuprebase = always
+[git-up "fetch"]
+	prune = true
