@@ -1,6 +1,6 @@
 #!/bin/bash -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-ln -rfs $DIR/vimrc ~/.vimrc
-ln -rfs $DIR/gitconfig ~/.gitconfig
-ln -rfs $DIR/zshrc ~/.zshrc
-ln -rfs $DIR/mrconfig ~/.mrconfig
+ln -fs $DIR/vimrc ~/.vimrc
+ln -fs $DIR/gitconfig ~/.gitconfig
+ln -fs $DIR/zshrc ~/.zshrc
+ln -fs $DIR/mrconfig ~/.mrconfig
