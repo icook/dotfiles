@@ -1,0 +1,23 @@
+[DEFAULT]
+up = git up
+
+[programming/simplecoin_multi]
+checkout = git clone 'git@github.com:simplecrypto/simplecoin_multi.git' 'simplecoin_multi'
+
+[programming/cryptokit]
+checkout = git clone 'git@github.com:simplecrypto/cryptokit.git' 'cryptokit'
+
+[programming/powerpool]
+checkout = git clone 'git@github.com:icook/powerpool.git' 'powerpool'
+
+[programming/autoex]
+checkout = git clone 'git@github.com:ericecook/autoex.git' 'autoex'
+
+[programming/sc_trader]
+checkout = git clone 'git@github.com:ericecook/sc_trader.git' 'sc_trader'
+
+[programming/simplecoin_rpc_client]
+checkout = git clone 'git@github.com:simplecrypto/simplecoin_rpc_client.git' 'simplecoin_rpc_client'
+
+[dotfiles]
+checkout = git clone 'git@github.com:icook/dotfiles.git' 'dotfiles'
