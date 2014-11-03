@@ -21,3 +21,9 @@ checkout = git clone 'git@github.com:simplecrypto/simplecoin_rpc_client.git' 'si
 
 [dotfiles]
 checkout = git clone 'git@github.com:icook/dotfiles.git' 'dotfiles'
+
+[.secrets-repo]
+checkout = git clone 'ssh://git@gitlab.ibcook.com:40/icook/secrets.git' '.secrets-repo'
+
+[.personal-secrets-repo]
+checkout = git clone 'ssh://git@gitlab.ibcook.com:40/icook/personal-secrets.git' '.personal-secrets-repo'
