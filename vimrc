@@ -44,6 +44,8 @@ NeoBundle 'nanotech/jellybeans.vim'
 
 " Other
 """""""""""""""
+" Allows easy switching between .h and .cpp
+NeoBundle 'derekwyatt/vim-fswitch'
 " Causes <C-X>/<C-A> to affect dates
 NeoBundle 'tpope/vim-speeddating'
 " Cool looking status line!
@@ -335,6 +337,9 @@ set guioptions-=r
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
+
+" fswitch
+nmap <silent> <F4> :FSHere<cr>
 
 " bufExplorer plugin
 let g:bufExplorerDefaultHelp=0
