@@ -1,83 +1,85 @@
 set nocompatible               " be iMproved
-syntax on
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set runtimepath+=/Users/icook/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('/Users/icook/.vim/bundle'))
 
-Bundle 'gmarik/vundle'
+NeoBundle 'gmarik/Vundle.vim'
 
 " Navigation and the like
 """""""""""""""""""""""""
-Bundle 'kien/ctrlp.vim'
-Bundle 'xolox/vim-misc'
-Bundle 'corntrace/bufexplorer'
-Bundle 'scrooloose/nerdtree'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'corntrace/bufexplorer'
+NeoBundle 'scrooloose/nerdtree'
 
 " Language support
 """"""""""""""""""
-Bundle 'tpope/vim-markdown'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'fatih/vim-go.git'
-Bundle 'groenewege/vim-less'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'icook/Vim-Jinja2-Syntax'
-Bundle 'tpope/vim-haml'
-Bundle 'saltstack/salt-vim'
-"Bundle 'ingydotnet/yaml-vim'
-Bundle 'chase/vim-ansible-yaml'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'jnwhiteh/vim-golang'
+NeoBundle 'fatih/vim-go.git'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'icook/Vim-Jinja2-Syntax'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'saltstack/salt-vim'
+"NeoBundle 'ingydotnet/yaml-vim'
+NeoBundle 'chase/vim-ansible-yaml'
 " Matched HTML tags
-Bundle 'Valloric/MatchTagAlways' 
+NeoBundle 'Valloric/MatchTagAlways' 
 " Proper indentation, etc on python
-Bundle 'klen/python-mode'
+NeoBundle 'klen/python-mode'
 " Powerful python completion
-Bundle 'jmcantrell/vim-virtualenv'
-"Bundle 'davidhalter/jedi-vim'
-Bundle 'cespare/vim-toml'
+NeoBundle 'jmcantrell/vim-virtualenv'
+"NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'cespare/vim-toml'
 
 " Color schemes
 """""""""""""""
-Bundle 'vim-scripts/peaksea'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'nanotech/jellybeans.vim'
+NeoBundle 'vim-scripts/peaksea'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'nanotech/jellybeans.vim'
 
 " Other
 """""""""""""""
 " Causes <C-X>/<C-A> to affect dates
-Bundle 'tpope/vim-speeddating'
+NeoBundle 'tpope/vim-speeddating'
 " Cool looking status line!
-Bundle "bling/vim-airline"
+NeoBundle "bling/vim-airline"
 " Snippets
-Bundle 'garbas/vim-snipmate'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/vim-snippets'
+NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'tomtom/tlib_vim'
+NeoBundle 'honza/vim-snippets'
 " For editing parens, etc
-Bundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-surround'
 " Better repeat functionality for plugins
-Bundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-repeat'
 " Git plugin
-Bundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 " Modify the change semantic slightly, very useful
-Bundle 'briandoll/change-inside-surroundings.vim'
+NeoBundle 'briandoll/change-inside-surroundings.vim'
 " Some useful commands, mainly moving file easily
-Bundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-eunuch'
 " Quickly switch casing styles...
-Bundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-abolish'
 " Simple keyword based autocomplete
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'Shougo/neocomplete.vim'
+"NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'vim-scripts/YankRing.vim'
+NeoBundle 'Shougo/neocomplete.vim'
 " Syntax helper
-Bundle 'scrooloose/syntastic'
-Bundle 'mileszs/ack.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'mileszs/ack.vim'
 " Easily swap splits
-Bundle 'wesQ3/vim-windowswap'
+NeoBundle 'wesQ3/vim-windowswap'
+
+call neobundle#end()
 
 " Enable filetype plugins
 filetype plugin indent on
+syntax on
 "filetype plugin on
 
 " Lots and lots of general setup
