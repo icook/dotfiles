@@ -1,5 +1,6 @@
 [core]
 	editor = vim
+	excludesfile = /home/isaac2/.gitignore_global
 [color]
 	ui = true
 [user]
@@ -19,3 +20,5 @@
 	autosetuprebase = always
 [git-up "fetch"]
 	prune = true
+[push]
+	default = matching
