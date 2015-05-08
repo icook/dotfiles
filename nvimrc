@@ -27,7 +27,6 @@ Plug 'Valloric/MatchTagAlways'
 " Proper indentation, etc on python
 Plug 'klen/python-mode'
 " Powerful python completion
-Plug 'jmcantrell/vim-virtualenv'
 Plug 'cespare/vim-toml'
 
 " Color schemes
