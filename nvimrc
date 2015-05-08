@@ -4,8 +4,6 @@ filetype off                   " required!
 set runtimepath+=/Users/icook/.vim/bundle/neobundle.vim/
 call plug#begin('~/.nvim/plugged')
 
-Plug 'gmarik/Vundle.vim'
-
 " Navigation and the like
 """""""""""""""""""""""""
 Plug 'kien/ctrlp.vim'
@@ -18,13 +16,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-markdown'
 Plug 'kchmck/vim-coffee-script'
 Plug 'jnwhiteh/vim-golang'
-Plug 'fatih/vim-go.git'
 Plug 'groenewege/vim-less'
 Plug 'vim-ruby/vim-ruby'
 Plug 'icook/Vim-Jinja2-Syntax'
 Plug 'tpope/vim-haml'
 Plug 'saltstack/salt-vim'
-"Plug 'ingydotnet/yaml-vim'
 Plug 'chase/vim-ansible-yaml'
 " Matched HTML tags
 Plug 'Valloric/MatchTagAlways' 
@@ -32,7 +28,6 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'klen/python-mode'
 " Powerful python completion
 Plug 'jmcantrell/vim-virtualenv'
-"Plug 'davidhalter/jedi-vim'
 Plug 'cespare/vim-toml'
 
 " Color schemes
@@ -44,6 +39,8 @@ Plug 'nanotech/jellybeans.vim'
 
 " Other
 """""""""""""""
+" Better Completion
+Plug 'Valloric/YouCompleteMe'
 " Allows easy switching between .h and .cpp
 Plug 'derekwyatt/vim-fswitch'
 " Causes <C-X>/<C-A> to affect dates
@@ -75,6 +72,7 @@ Plug 'benekastah/neomake'
 Plug 'mileszs/ack.vim'
 " Easily swap splits
 Plug 'wesQ3/vim-windowswap'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -116,6 +114,8 @@ set number
 set cmdheight=2
 " A buffer becomes hidden when it is abandoned
 set hid
+set autowrite
+set autoread
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -293,7 +293,7 @@ nnoremap <C-m> mz:m-2<cr>`z
 " Smart way to move between windows
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
+nnoremap <C-H> <C-W>h
 nnoremap <C-l> <C-W>l
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap j gj
@@ -353,11 +353,9 @@ let g:pymode_lint = 0
 let g:pymode_rope_completion = 0
 
 " Yankring
-let g:yankring_replace_n_pkey = '<C-w>'
-let g:yankring_replace_n_nkey = '<C-e>'
+let g:yankring_replace_n_pkey = '<C-m>'
+let g:yankring_replace_n_nkey = '<C-n>'
 
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
