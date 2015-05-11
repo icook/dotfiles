@@ -5,3 +5,4 @@ ln -fs $DIR/nvimrc ~/.nvimrc
 ln -fs $DIR/gitconfig ~/.gitconfig
 ln -fs $DIR/zshrc ~/.zshrc
 ln -fs $DIR/mrconfig ~/.mrconfig
+ln -fs $DIR/gitignore_global ~/.gitignore_global
