@@ -1,8 +1,8 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set runtimepath+=/Users/icook/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('/Users/icook/.vim/bundle'))
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.vim/bundle'))
 
 NeoBundle 'gmarik/Vundle.vim'
 
