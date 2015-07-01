@@ -34,6 +34,7 @@ NeoBundle 'klen/python-mode'
 NeoBundle 'jmcantrell/vim-virtualenv'
 "NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'cespare/vim-toml'
+NeoBundle 'keith/swift.vim'
 
 " Color schemes
 """""""""""""""
