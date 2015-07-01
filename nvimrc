@@ -93,6 +93,7 @@ let mapleader = ","
 let g:mapleader = ","
 " Keep if fairly centered
 set scrolloff=15
+set mouse=nicr
 " Make tab completion show options somewhat like zsh
 set wildmenu
 set wildmode=list:longest,full
