@@ -133,7 +133,6 @@ set mat=2
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
-set t_vb=
 set tm=500
 " Use spaces instead of tabs
 set expandtab
@@ -170,13 +169,10 @@ set background=dark
 if has("gui_running")
     set guioptions-=T
     set guioptions-=e
-    set t_Co=256
     set guitablabel=%M\ %t
 endif
 set t_Co=256
 colorscheme hybrid
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
@@ -228,14 +224,11 @@ try
 catch
 endtry
 
-" Exit paste mode when leaving insert mode
-au InsertLeave * set nopaste
-
 " Mode Switches
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " absolute line numbers in insert mode, relative otherwise for easy movement
-au InsertEnter * :set nu
-au InsertLeave * :set rnu
+autocmd InsertEnter * :set nu
+autocmd InsertLeave * :set rnu
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " General remaps and leader
@@ -254,13 +247,9 @@ nnoremap <leader>ba :bufdo bdelete<cr>
 nnoremap <leader>c :call IntSurround()<cr>
 " Clear the hilight easily
 nnoremap <leader><cr> :set hlsearch!<CR>
-" Quickly build up a multiline string
-"nnoremap <leader>q 80|bi"<CR>"<C-c>
 
 " F-Keys
 """"""""""""""""""""""""""""""""""""""""""
-map <F2> :set paste!<CR>
-set clipboard=unnamed
 map <F5> :so $MYVIMRC<CR>
 map <F6> :e $MYVIMRC<CR>
 
@@ -296,7 +285,7 @@ nnoremap gp `[v`]
 " Insert Mode
 """""""""""""""""""""""""""""""""""""""""""""
 " Fast Paste while in insert mode
-inoremap <C-F> <C-R>"
+inoremap <C-F> <C-G>u<C-R>"
 
 " Visual mode 
 """"""""""""""""""""""""""""""""""""""""""""
