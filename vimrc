@@ -74,7 +74,8 @@ NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 " Syntax helper
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'mileszs/ack.vim'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'ggreer/the_silver_searcher'
 " Easily swap splits
 NeoBundle 'wesQ3/vim-windowswap'
 
@@ -324,13 +325,6 @@ vnoremap <C-n> <esc>`>gv:m '>+1<cr>gv
 vnoremap < <gv
 vnoremap > >gv
 
-" Related Mappings (mappings in many modes that are related)
-""""""""""""""""""""""""""""""""""""""""""""
-" Make a better escape for all modes. jk doesn't work for visual...
-imap ii <Esc>
-vmap ii <Esc>
-cmap ii <C-c>
-
 " GVIM
 """""""""""""""""""""""""""""""""""""""""
 " Disable scrollbars (real hackers don't use scrollbars for navigation!)
@@ -385,8 +379,11 @@ autocmd BufWinEnter *.jinja2 setfiletype jinja
 " HTML
 autocmd FileType html,jinja,css,scss,less,coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType gitcommit setlocal textwidth=0
-autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
 " Python
 au FileType python syn keyword pythonDecorator True None False self
 autocmd FileType python setlocal textwidth=0 
+
+" Javascript
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+autocmd BufNewFile,BufReadPost *.js setl shiftwidth=2 expandtab

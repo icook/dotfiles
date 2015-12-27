@@ -1,4 +1,3 @@
-set nocompatible               " be iMproved
 filetype off                   " required!
 
 set runtimepath+=/Users/icook/.vim/bundle/neobundle.vim/
@@ -6,10 +5,7 @@ call plug#begin('~/.nvim/plugged')
 
 " Navigation and the like
 """""""""""""""""""""""""
-Plug 'kien/ctrlp.vim'
-Plug 'xolox/vim-misc'
-Plug 'corntrace/bufexplorer'
-Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Language support
 """"""""""""""""""
@@ -42,10 +38,10 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'Valloric/YouCompleteMe'
 " Allows easy switching between .h and .cpp
 Plug 'derekwyatt/vim-fswitch'
+" Cool statusline
+Plug 'bling/vim-airline'
 " Causes <C-X>/<C-A> to affect dates
 Plug 'tpope/vim-speeddating'
-" Cool looking status line!
-Plug 'bling/vim-airline'
 " Snippets
 Plug 'garbas/vim-snipmate'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -64,7 +60,6 @@ Plug 'tpope/vim-eunuch'
 " Quickly switch casing styles...
 Plug 'tpope/vim-abolish'
 " Simple keyword based autocomplete
-"Plug 'Valloric/YouCompleteMe'
 Plug 'vim-scripts/YankRing.vim'
 " Syntax helper
 Plug 'benekastah/neomake'
@@ -286,15 +281,12 @@ nnoremap 0 ^
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nnoremap <C-n> mz:m+<cr>`z
 nnoremap <C-m> mz:m-2<cr>`z
-" Now made dd not save, and use X to save a single line instead since it's
-" worthless
-"nnoremap dd "_dd
-"nnoremap X dd
 " Smart way to move between windows
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-l> <C-W>l
+nnoremap <C-p> :FZF<CR>
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap j gj
 nnoremap k gk
@@ -331,12 +323,6 @@ let g:bufExplorerShowRelativePath=1
 let g:bufExplorerFindActive=1
 let g:bufExplorerSortBy='name'
 map <leader>o :BufExplorer<cr>
-
-" ctrlp
-""""""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_switch_buffer = ''
 
 " snipMate (beside <TAB> support <CTRL-j>)
 """"""""""""""""""""""""""""""

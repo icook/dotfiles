@@ -12,15 +12,16 @@ plugins=(git virtualenvwrapper debian)
 source $ZSH/oh-my-zsh.sh
 
 alias pkilla="pkill -fe --signal 9"
-#crypto_address_version() {
-#    echo $1
-#    echo `python -c "from cryptokit.base58 import get_bcaddress_version; print get_bcaddress_version('{$1}')"`
-#}
 
 alias rl=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias vzsh="vim ~/.zshrc"
 alias bower='noglob bower'
 alias gaa='git add -A && git status'
+gcu() {
+[[ "$#" != 1 ]] && local b="$(git_current_branch)"
+git stash && git pull origin "${b:=$1}" && git stash pop
+}
+compdef _git gcu=git-checkout
 
 export GOPATH=$HOME/programming/go
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
@@ -29,3 +30,8 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+alias vim="nvim"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
