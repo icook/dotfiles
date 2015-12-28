@@ -59,14 +59,14 @@ Plug 'briandoll/change-inside-surroundings.vim'
 Plug 'tpope/vim-eunuch'
 " Quickly switch casing styles...
 Plug 'tpope/vim-abolish'
-" Simple keyword based autocomplete
-Plug 'vim-scripts/YankRing.vim'
 " Syntax helper
 Plug 'benekastah/neomake'
 Plug 'mileszs/ack.vim'
 " Easily swap splits
 Plug 'wesQ3/vim-windowswap'
 Plug 'airblade/vim-gitgutter'
+" Better clipboard perf
+Plug 'svermeulen/vim-easyclip'
 
 call plug#end()
 
@@ -281,6 +281,9 @@ nnoremap j gj
 nnoremap k gk
 " Select the text that was just pasted
 nnoremap gp `[v`]
+" When moving to a paragraph, actually move to top
+nnoremap } }j
+nnoremap { {k
 
 " Insert Mode
 """""""""""""""""""""""""""""""""""""""""""""
@@ -327,14 +330,16 @@ let g:pymode_quickfix_maxheight = 0
 let g:pymode_lint = 0
 let g:pymode_rope_completion = 0
 
-" Yankring
-let g:yankring_replace_n_pkey = '<C-m>'
-let g:yankring_replace_n_nkey = '<C-n>'
-
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 autocmd! BufWritePost * Neomake
+
+" EasyClip
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyClipUseSubstituteDefaults = 1
+nmap <c-w> <plug>EasyClipSwapPasteBackwards
+nmap <c-e> <plug>EasyClipSwapPasteForward
 
 "" Filetype specific
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
