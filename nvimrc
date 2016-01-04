@@ -67,6 +67,8 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'airblade/vim-gitgutter'
 " Better clipboard perf
 Plug 'svermeulen/vim-easyclip'
+" Generate tags files without any headache
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -271,10 +273,10 @@ nnoremap 0 ^
 nnoremap <C-n> mz:m+<cr>`z
 nnoremap <C-m> mz:m-2<cr>`z
 " Smart way to move between windows
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-H> <C-W>h
-nnoremap <C-l> <C-W>l
+nnoremap <C-j> :wincmd j<cr>
+nnoremap <C-k> :wincmd k<cr>
+nnoremap <C-h> :wincmd h<cr>
+nnoremap <C-l> :wincmd l<cr>
 nnoremap <C-p> :FZF<CR>
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap j gj
@@ -309,13 +311,6 @@ vnoremap > >gv
 " fswitch. Swap between .h/.cpp with f4
 nmap <silent> <F4> :FSHere<cr>
 
-" bufExplorer plugin
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerFindActive=1
-let g:bufExplorerSortBy='name'
-map <leader>o :BufExplorer<cr>
-
 " snipMate (beside <TAB> support <CTRL-j>)
 """"""""""""""""""""""""""""""
 ino <c-j> <c-r>=snipMate#TriggerSnippet()<cr>
@@ -324,6 +319,7 @@ snor <c-j> <esc>i<right><c-r>=snipMate#TriggerSnippet()<cr>
 " Airline
 let g:airline_powerline_fonts = 1
 
+set statusline+=%{gutentags#statusline('[Generating...]')}
 " Pythonmode
 let g:pymode_trim_whitespaces = 0
 let g:pymode_quickfix_maxheight = 0

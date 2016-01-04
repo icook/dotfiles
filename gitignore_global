@@ -1,2 +1,6 @@
 .ropeproject
 .DS_Store
+tags
+*~
+.project
+.cproject
