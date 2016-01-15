@@ -22,8 +22,8 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'Valloric/MatchTagAlways' 
 " Proper indentation, etc on python
 Plug 'klen/python-mode'
-" Powerful python completion
 Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
 
 " Color schemes
 """""""""""""""
@@ -69,6 +69,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'svermeulen/vim-easyclip'
 " Generate tags files without any headache
 Plug 'ludovicchabant/vim-gutentags'
+" Autocomplete for Rust
+Plug 'racer-rust/vim-racer'
 
 call plug#end()
 
@@ -191,7 +193,7 @@ set viminfo^=%
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
-  exe "normal mz"
+  mark z
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
@@ -330,6 +332,10 @@ let g:pymode_rope_completion = 0
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 autocmd! BufWritePost * Neomake
+let g:neomake_python_pylama_maker = {
+    \ 'args': ['--format', 'pep8', '--ignore', 'E501'],
+    \ 'errorformat': '%f:%l:%c: %m',
+    \ }
 
 " EasyClip
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
