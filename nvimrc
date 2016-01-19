@@ -71,6 +71,8 @@ Plug 'svermeulen/vim-easyclip'
 Plug 'ludovicchabant/vim-gutentags'
 " Autocomplete for Rust
 Plug 'racer-rust/vim-racer'
+" Let fugitive.vim open gitlab projects
+Plug 'shumphrey/fugitive-gitlab.vim'
 
 call plug#end()
 
@@ -348,7 +350,7 @@ nmap <c-e> <plug>EasyClipSwapPasteForward
 autocmd BufWinEnter *.jinja2 setfiletype jinja
 
 " HTML
-autocmd FileType html,jinja,css,scss,less,coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType html,jinja,css,scss,less,coffee,javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType gitcommit setlocal textwidth=0
 autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
