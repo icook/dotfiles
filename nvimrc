@@ -10,20 +10,24 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Language support
 """"""""""""""""""
 Plug 'tpope/vim-markdown'
-Plug 'kchmck/vim-coffee-script'
 Plug 'jnwhiteh/vim-golang'
 Plug 'groenewege/vim-less'
 Plug 'vim-ruby/vim-ruby'
 Plug 'icook/Vim-Jinja2-Syntax'
 Plug 'tpope/vim-haml'
-Plug 'saltstack/salt-vim'
 Plug 'chase/vim-ansible-yaml'
 " Matched HTML tags
 Plug 'Valloric/MatchTagAlways' 
 " Proper indentation, etc on python
-Plug 'klen/python-mode'
 Plug 'cespare/vim-toml'
+
+" Rust
 Plug 'rust-lang/rust.vim'
+Plug 'sebastianmarkow/deoplete-rust' " Autocomplete for Rust
+
+Plug 'posva/vim-vue'
+Plug 'baabelfish/nvim-nim'
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
 " Color schemes
 """""""""""""""
@@ -35,18 +39,14 @@ Plug 'nanotech/jellybeans.vim'
 " Other
 """""""""""""""
 " Better Completion
-Plug 'Valloric/YouCompleteMe'
-" Allows easy switching between .h and .cpp
-Plug 'derekwyatt/vim-fswitch'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Cool statusline
 Plug 'bling/vim-airline'
 " Causes <C-X>/<C-A> to affect dates
 Plug 'tpope/vim-speeddating'
 " Snippets
-Plug 'garbas/vim-snipmate'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'honza/vim-snippets'
 " For editing parens, etc
 Plug 'tpope/vim-surround'
 " Better repeat functionality for plugins
@@ -62,17 +62,14 @@ Plug 'tpope/vim-abolish'
 " Syntax helper
 Plug 'benekastah/neomake'
 Plug 'mileszs/ack.vim'
-" Easily swap splits
-Plug 'wesQ3/vim-windowswap'
 Plug 'airblade/vim-gitgutter'
 " Better clipboard perf
 Plug 'svermeulen/vim-easyclip'
 " Generate tags files without any headache
 Plug 'ludovicchabant/vim-gutentags'
-" Autocomplete for Rust
-Plug 'racer-rust/vim-racer'
 " Let fugitive.vim open gitlab projects
 Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'Shougo/denite.nvim'
 
 call plug#end()
 
@@ -97,6 +94,8 @@ set scrolloff=15
 set mouse=nicr
 " Make tab completion show options somewhat like zsh
 set wildmenu
+" Copy to system clipboard by default
+set clipboard=unnamedplus
 set wildmode=list:longest,full
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc,*.pyo
@@ -199,8 +198,7 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd FileType html,jinja,css,scss,less,coffee,javascript,vue autocmd BufWrite :call DeleteTrailingWS()
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
@@ -350,10 +348,13 @@ nmap <c-e> <plug>EasyClipSwapPasteForward
 autocmd BufWinEnter *.jinja2 setfiletype jinja
 
 " HTML
-autocmd FileType html,jinja,css,scss,less,coffee,javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType html,jinja,css,scss,less,coffee,javascript,vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType gitcommit setlocal textwidth=0
 autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
 " Python
 au FileType python syn keyword pythonDecorator True None False self
 autocmd FileType python setlocal textwidth=0 
+
+" FZF
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'

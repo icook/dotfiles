@@ -24,6 +24,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'icook/Vim-Jinja2-Syntax'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'saltstack/salt-vim'
+NeoBundle 'zah/nim.vim'
 "NeoBundle 'ingydotnet/yaml-vim'
 NeoBundle 'chase/vim-ansible-yaml'
 " Matched HTML tags
