@@ -16,19 +16,13 @@ Plug 'posva/vim-vue'
 Plug 'spacetekk/pgsql.vim'
 
 Plug 'icook/Vim-Jinja2-Syntax'
-autocmd BufWinEnter *.jinja2 setfiletype jinja
 
 " Python
-au FileType python syn keyword pythonDecorator True None False self
-autocmd FileType python setlocal textwidth=0 
 Plug 'zchee/deoplete-jedi'
 Plug 'vim-scripts/indentpython.vim'
 
 " HTML
 Plug 'Valloric/MatchTagAlways' 
-autocmd FileType html,jinja,css,scss,less,coffee,javascript,vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType gitcommit setlocal textwidth=0
-autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
 " Rust
 Plug 'rust-lang/rust.vim'
@@ -37,7 +31,6 @@ Plug 'sebastianmarkow/deoplete-rust' " Autocomplete for Rust
 " Go
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
-let g:go_fmt_autosave = 1
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " Color scheme
@@ -47,21 +40,18 @@ Plug 'w0ng/vim-hybrid'
 " ============================
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :GFiles<CR>
-nnoremap <C-y> :History<CR>
-nnoremap <C-t> :Tags<CR>
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 " Other
 " ============================
-" More completetion BROKEN
-"Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'majutsushi/tagbar'               " Shows functions in easy menu
+Plug 'tpope/vim-commentary'            " Easy comment/uncommand
+Plug 'rhysd/conflict-marker.vim'       " Hilighting for merge conflicts from git
+Plug 'jiangmiao/auto-pairs'            " Smart autocreation of quotes or {
+Plug 'nathanaelkane/vim-indent-guides' " Color coding for indentation
+Plug 'osyo-manga/vim-over'             " Shows matches for :s/ as typed
 " Better Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
-
-Plug 'bling/vim-airline'              " Better statusline
-let g:airline_powerline_fonts = 1
+Plug 'bling/vim-airline'               " Pretty statusline
 
 Plug 'tpope/vim-surround'              " For editing inside parens, tags, etc
 Plug 'tpope/vim-repeat'                " Better repeat functionality for plugins
@@ -74,32 +64,65 @@ Plug 'tpope/vim-abolish'
 
 " Runs linters automatically. Shows indicator in gutters
 Plug 'w0rp/ale'
-let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 1
-" Shows git modification artifacts indicators to line numbers
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'          " Shows git modification artifacts in gutter
 
 " Better clipboard perf. Changes d to 'delete', m to 'move' or cut
 Plug 'svermeulen/vim-easyclip'
-let g:EasyClipUseSubstituteDefaults = 1
-nmap <c-w> <plug>EasyClipSwapPasteBackwards
-nmap <c-e> <plug>EasyClipSwapPasteForward
 
 " Generate tags files without any headache
 Plug 'ludovicchabant/vim-gutentags'
-set statusline+=%{gutentags#statusline('[Generating...]')}
 
 Plug 'Shougo/denite.nvim'
 
 call plug#end()
+
+" *****************************************************************************
+" Plugin Config
+" *****************************************************************************
+nmap <F8> :TagbarToggle<CR>
+
+let g:deoplete#enable_at_startup = 1
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+let g:airline_powerline_fonts = 1
+
+let g:ale_sign_column_always = 1
+let g:ale_linters = {'go': ['go build']}
+let g:airline#extensions#ale#enabled = 1
+
+let g:EasyClipUseSubstituteDefaults = 1
+nmap <c-w> <plug>EasyClipSwapPasteBackwards
+nmap <c-e> <plug>EasyClipSwapPasteForward
+
+set statusline+=%{gutentags#statusline('[Generating...]')}
+
+autocmd BufWinEnter *.jinja2 setfiletype jinja
+autocmd FileType python syn keyword pythonDecorator True None False self
+autocmd FileType python setlocal textwidth=0 
+autocmd FileType html,jinja,css,scss,less,coffee,javascript,vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType gitcommit setlocal textwidth=0
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+let g:go_fmt_autosave = 1
+nnoremap <C-p> :Files<CR>
+nnoremap <C-y> :History<CR>
+nnoremap <C-t> :Tags<CR>
+nnoremap <C-q> :Ag<CR>
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
 " Lots and lots of general setup
 """"""""""""""""""""""""""""""""""""""
 colorscheme hybrid
 filetype plugin indent on
 syntax enable 
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = " "
+let g:mapleader = " "
 
 set wildmenu              " Make tab completion show options somewhat like zsh
 set wildmode=list:longest,full
@@ -165,8 +188,13 @@ set undofile
 " =================================================
 " Make shortcut to easily edit file in same director
 nnoremap <Leader>e :e <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <Leader>w :w<CR>
 " Clear the hilight easily
 nnoremap <leader><cr> :set hlsearch!<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gs :Gdiff<CR>
+nnoremap <leader><space> :q<CR>
 
 " F-Keys
 " =================================================
@@ -181,7 +209,7 @@ nnoremap Y y$
 nnoremap > >>
 nnoremap < <<
 " Allow using tab and shift-tab for indentation toggle
-nnoremap <Tab> >>_
+"nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 " Remap VIM 0 to first non-blank character
 nnoremap 0 ^
