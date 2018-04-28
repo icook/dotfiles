@@ -1,1 +1,1 @@
-ACTION=="add", RUN+="/home/icook/bin/x"
+ACTION=="add", RUN+="/home/icook/bin/remap-kbd"
