@@ -1,4 +1,4 @@
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.nvil_silently = 1m/plugged')
 
 " *****************************************************************************
 " Plugins
@@ -14,8 +14,12 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'cespare/vim-toml'
 Plug 'posva/vim-vue'
 Plug 'spacetekk/pgsql.vim'
+Plug 'tomlion/vim-solidity'
 
 Plug 'icook/Vim-Jinja2-Syntax'
+Plug 'mxw/vim-jsx'
+Plug 'google/vim-jsonnet'
+let g:jsx_ext_required = 0
 
 " Python
 Plug 'zchee/deoplete-jedi'
@@ -31,7 +35,6 @@ Plug 'sebastianmarkow/deoplete-rust' " Autocomplete for Rust
 " Go
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " Color scheme
 Plug 'w0ng/vim-hybrid'
@@ -46,12 +49,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'               " Shows functions in easy menu
 Plug 'tpope/vim-commentary'            " Easy comment/uncommand
 Plug 'rhysd/conflict-marker.vim'       " Hilighting for merge conflicts from git
-Plug 'jiangmiao/auto-pairs'            " Smart autocreation of quotes or {
 Plug 'nathanaelkane/vim-indent-guides' " Color coding for indentation
 Plug 'osyo-manga/vim-over'             " Shows matches for :s/ as typed
 " Better Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'bling/vim-airline'               " Pretty statusline
+Plug 'wellle/targets.vim'              " Better text objects
 
 Plug 'tpope/vim-surround'              " For editing inside parens, tags, etc
 Plug 'tpope/vim-repeat'                " Better repeat functionality for plugins
@@ -93,8 +96,11 @@ endfunction"}}}
 
 let g:airline_powerline_fonts = 1
 
+let g:go_fmt_fail_silently = 1
+
 let g:ale_sign_column_always = 1
-let g:ale_linters = {'go': ['go build']}
+let g:ale_set_loclist = 0
+let g:ale_linters = {'go': ['go build', 'gometalinter --disable=golint --disable=gocyclo -j 8 --fast']}
 let g:airline#extensions#ale#enabled = 1
 
 let g:EasyClipUseSubstituteDefaults = 1
@@ -103,6 +109,7 @@ nmap <c-e> <plug>EasyClipSwapPasteForward
 
 set statusline+=%{gutentags#statusline('[Generating...]')}
 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufWinEnter *.jinja2 setfiletype jinja
 autocmd FileType python syn keyword pythonDecorator True None False self
 autocmd FileType python setlocal textwidth=0 
@@ -134,6 +141,7 @@ set history=1000
 set autoread             
 set nofoldenable          " disable folding
 set scrolloff=15          " Keep cursor near center of screen
+set guicursor=
 set mouse=nicr
 set clipboard=unnamedplus " Copy to system clipboard by default
 set ruler                 " Always show current position in bottom right of screen
