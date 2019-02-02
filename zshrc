@@ -12,9 +12,11 @@ HIST_IGNORE_ALL_DUPS="true"
 DISABLE_AUTO_TITLE="true"
 # red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
-plugins=(git virtualenvwrapper debian kubectl)
+plugins=(git debian kubectl)
 
 WORKON_HOME=$HOME/.virtualenvs
+export GOPATH=$HOME/programming/go
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin:$GOPATH/bin:$ZSH/bin:$HOME/dotfiles/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$HOME/.npm-global/bin:/usr/local/go/bin
 source $ZSH/oh-my-zsh.sh
 
 alias pkilla="pkill -fe --signal 9"
@@ -26,17 +28,15 @@ alias rl=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias vzsh="vim ~/.zshrc"
 alias gaa='git add -A && git status'
 
-export GOPATH=$HOME/programming/go
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 # Customize to your needs...
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin:$GOPATH/bin:$ZSH/bin:$HOME/dotfiles/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$HOME/.npm-global/bin:/usr/local/go/bin
 export ANDROID_HOME=/home/icook/Android/Sdk/
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 alias vim="nvim"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -45,3 +45,6 @@ alias vim="nvim"
 export SDKMAN_DIR="/home/icook/.sdkman"
 [[ -s "/home/icook/.sdkman/bin/sdkman-init.sh" ]] && source "/home/icook/.sdkman/bin/sdkman-init.sh"
 source /etc/profile.d/apps-bin-path.sh
+
+# Use gpg as the ssh-agent
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"

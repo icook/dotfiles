@@ -10,7 +10,7 @@ Plug 'tpope/vim-markdown'
 Plug 'groenewege/vim-less'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-haml'
-Plug 'chase/vim-ansible-yaml'
+Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
 Plug 'posva/vim-vue'
 Plug 'spacetekk/pgsql.vim'
@@ -60,6 +60,7 @@ Plug 'tpope/vim-surround'              " For editing inside parens, tags, etc
 Plug 'tpope/vim-repeat'                " Better repeat functionality for plugins
 Plug 'tpope/vim-fugitive'              " Git integration. Blame, diff etc
 Plug 'shumphrey/fugitive-gitlab.vim'   " Let fugitive.vim open gitlab projects
+Plug 'jamessan/vim-gnupg'              " Editing gpg files seamless
 " Some useful commands, mainly moving file easily
 Plug 'tpope/vim-eunuch'
 " Quickly switch casing styles...
@@ -72,8 +73,9 @@ Plug 'airblade/vim-gitgutter'          " Shows git modification artifacts in gut
 " Better clipboard perf. Changes d to 'delete', m to 'move' or cut
 Plug 'svermeulen/vim-easyclip'
 
+
 " Generate tags files without any headache
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'Shougo/denite.nvim'
 
@@ -83,6 +85,7 @@ call plug#end()
 " Plugin Config
 " *****************************************************************************
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_show_linenumbers = 2
 
 let g:deoplete#enable_at_startup = 1
 inoremap <silent><expr> <TAB>
@@ -100,7 +103,7 @@ let g:go_fmt_fail_silently = 1
 
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
-let g:ale_linters = {'go': ['go build', 'gometalinter --disable=golint --disable=gocyclo -j 8 --fast']}
+let g:ale_linters = {'go': ['go build', 'gometalinter --disable=golint --disable=gocyclo -j 8 --fast'], 'python': ['flake8', 'pylint']}
 let g:airline#extensions#ale#enabled = 1
 
 let g:EasyClipUseSubstituteDefaults = 1
@@ -131,6 +134,7 @@ syntax enable
 let mapleader = " "
 let g:mapleader = " "
 
+set listchars=tab:>-      " Make tab characters obvious
 set wildmenu              " Make tab completion show options somewhat like zsh
 set wildmode=list:longest,full
 set wildignore=*.o,*~,*.pyc,*.pyo

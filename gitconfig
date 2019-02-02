@@ -6,6 +6,7 @@
 [user]
 	name = Isaac Cook
 	email = isaac@simpload.com
+	signingkey = 5F7FF92E0E156CA1
 [alias]
     l = log --decorate --graph --date=relative --pretty=\"format:%ad %C(yellow)%h%C(green)%d%Creset%n%C(white)%B%Creset\"
     rec = !git --no-pager log -10 --decorate --graph --date=relative --pretty=\"format:%ad %C(yellow)%h%C(green)%d%Creset%n%C(white)%B%Creset\"
@@ -22,3 +23,5 @@
 	prune = true
 [push]
 	default = matching
+[commit]
+	gpgSign = true
