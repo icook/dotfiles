@@ -25,3 +25,5 @@
 	default = matching
 [commit]
 	gpgSign = true
+[gpg]
+	program = gpg2

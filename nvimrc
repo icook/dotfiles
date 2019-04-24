@@ -10,7 +10,8 @@ Plug 'tpope/vim-markdown'
 Plug 'groenewege/vim-less'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-haml'
-Plug 'stephpy/vim-yaml'
+Plug 'sheerun/vim-polyglot'   " Added for yaml, but has many
+Plug 'boeckmann/vim-freepascal'
 Plug 'cespare/vim-toml'
 Plug 'posva/vim-vue'
 Plug 'spacetekk/pgsql.vim'
@@ -33,7 +34,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'sebastianmarkow/deoplete-rust' " Autocomplete for Rust
 
 " Go
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'zchee/deoplete-go'
 
 " Color scheme
@@ -73,10 +74,6 @@ Plug 'airblade/vim-gitgutter'          " Shows git modification artifacts in gut
 " Better clipboard perf. Changes d to 'delete', m to 'move' or cut
 Plug 'svermeulen/vim-easyclip'
 
-
-" Generate tags files without any headache
-" Plug 'ludovicchabant/vim-gutentags'
-
 Plug 'Shougo/denite.nvim'
 
 call plug#end()
@@ -109,8 +106,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:EasyClipUseSubstituteDefaults = 1
 nmap <c-w> <plug>EasyClipSwapPasteBackwards
 nmap <c-e> <plug>EasyClipSwapPasteForward
-
-set statusline+=%{gutentags#statusline('[Generating...]')}
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufWinEnter *.jinja2 setfiletype jinja

@@ -1,6 +1,6 @@
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-	source /etc/profile.d/vte.sh
-fi
+# if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+# 	source /etc/profile.d/vte.sh
+# fi
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="bira"
@@ -12,10 +12,11 @@ HIST_IGNORE_ALL_DUPS="true"
 DISABLE_AUTO_TITLE="true"
 # red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
-plugins=(git debian kubectl)
+plugins=(git debian kubectl pass)
 
 WORKON_HOME=$HOME/.virtualenvs
 export GOPATH=$HOME/programming/go
+# export GO111MODULE=on
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin:$GOPATH/bin:$ZSH/bin:$HOME/dotfiles/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$HOME/.npm-global/bin:/usr/local/go/bin
 source $ZSH/oh-my-zsh.sh
 
@@ -48,3 +49,7 @@ source /etc/profile.d/apps-bin-path.sh
 
 # Use gpg as the ssh-agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
+# Add python user bin to path
+export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
+export PATH=$PY_USER_BIN:$PATH
