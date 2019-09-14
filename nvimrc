@@ -101,6 +101,7 @@ let g:go_fmt_fail_silently = 1
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
 let g:ale_linters = {'go': ['go build', 'gometalinter --disable=golint --disable=gocyclo -j 8 --fast'], 'python': ['flake8', 'pylint']}
+let g:ale_python_flake8_options = '--ignore=E501'
 let g:airline#extensions#ale#enabled = 1
 
 let g:EasyClipUseSubstituteDefaults = 1

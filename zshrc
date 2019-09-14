@@ -12,12 +12,12 @@ HIST_IGNORE_ALL_DUPS="true"
 DISABLE_AUTO_TITLE="true"
 # red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
-plugins=(git debian kubectl pass)
+plugins=(git debian kubectl pass kube-ps1)
 
 WORKON_HOME=$HOME/.virtualenvs
 export GOPATH=$HOME/programming/go
 # export GO111MODULE=on
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin:$GOPATH/bin:$ZSH/bin:$HOME/dotfiles/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$HOME/.npm-global/bin:/usr/local/go/bin
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin:$GOPATH/bin:$ZSH/bin:$HOME/dotfiles/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$HOME/.npm-global/bin:/usr/local/go/bin:/home/icook/.yarn/bin
 source $ZSH/oh-my-zsh.sh
 
 alias pkilla="pkill -fe --signal 9"
