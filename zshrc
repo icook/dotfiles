@@ -39,6 +39,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 alias vim="nvim"
+export DOCKER_BUILDKIT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
