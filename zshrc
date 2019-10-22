@@ -54,3 +54,6 @@ export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 # Add python user bin to path
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
 export PATH=$PY_USER_BIN:$PATH
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
