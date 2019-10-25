@@ -43,11 +43,6 @@ export DOCKER_BUILDKIT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/icook/.sdkman"
-[[ -s "/home/icook/.sdkman/bin/sdkman-init.sh" ]] && source "/home/icook/.sdkman/bin/sdkman-init.sh"
-source /etc/profile.d/apps-bin-path.sh
-
 # Use gpg as the ssh-agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
@@ -57,3 +52,9 @@ export PATH=$PY_USER_BIN:$PATH
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+if ! type "pygmentize" > /dev/null; then
+    alias ccat="cat"
+else
+    alias ccat="pygmentize -g"
+fi
