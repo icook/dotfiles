@@ -17,6 +17,10 @@ export GOPATH=$HOME/programming/go
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin:$GOPATH/bin:$ZSH/bin:$HOME/dotfiles/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$HOME/.npm-global/bin:/usr/local/go/bin:/home/icook/.yarn/bin
 source $ZSH/oh-my-zsh.sh
 
+# add kube_ps1 to prompt
+PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${git_branch}${venv_prompt}\$(kube_ps1)
+╰─%B${user_symbol}%b "
+
 alias pkilla="pkill -fe --signal 9"
 alias ag="nocorrect noglob ag --smart-case --context"
 
