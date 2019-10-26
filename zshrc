@@ -1,6 +1,3 @@
-# if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-# 	source /etc/profile.d/vte.sh
-# fi
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="bira"
@@ -36,9 +33,14 @@ export ANDROID_HOME=/home/icook/Android/Sdk/
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+# Activate pyenv if exists
+if type "pyenv" > /dev/null; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 alias vim="nvim"
+# (c)o(p)y (l)ast (c)ommand, for documentation building
+alias cplc='history | tail -n 1 | sed "s/[[:digit:]]*  //" | sed "s/^#//" | xclip'
 export DOCKER_BUILDKIT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
