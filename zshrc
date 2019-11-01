@@ -30,7 +30,9 @@ alias rl=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias vzsh="vim ~/.zshrc"
 alias gaa='git add -A && git status'
 
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+if type "rustc" > /dev/null; then
+    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 # Customize to your needs...
 export ANDROID_HOME=/home/icook/Android/Sdk/
