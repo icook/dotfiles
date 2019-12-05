@@ -6,36 +6,39 @@ call plug#begin('~/.nvil_silently = 1m/plugged')
 "
 " Language support
 " ============================
-Plug 'tpope/vim-markdown'
 Plug 'groenewege/vim-less'
 Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-haml'
 Plug 'sheerun/vim-polyglot'   " Added for yaml, but has many
 Plug 'boeckmann/vim-freepascal'
 Plug 'cespare/vim-toml'
-Plug 'posva/vim-vue'
-Plug 'spacetekk/pgsql.vim'
-Plug 'tomlion/vim-solidity'
 
-Plug 'icook/Vim-Jinja2-Syntax'
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'mxw/vim-jsx'
-Plug 'google/vim-jsonnet'
 let g:jsx_ext_required = 0
 
+" Infrequently used, but good to have on hand
+" Plug 'google/vim-jsonnet'
+" Plug 'tpope/vim-haml'
+" Plug 'posva/vim-vue'
+" Plug 'spacetekk/pgsql.vim'
+" Plug 'tomlion/vim-solidity'
+
 " Python
-Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-jedi'
 Plug 'vim-scripts/indentpython.vim'
 
 " HTML
+" Hilight matching HTML tags
 Plug 'Valloric/MatchTagAlways' 
 
 " Rust
 Plug 'rust-lang/rust.vim'
-Plug 'sebastianmarkow/deoplete-rust' " Autocomplete for Rust
+" Plug 'sebastianmarkow/deoplete-rust' " Autocomplete for Rust
 
 " Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'zchee/deoplete-go'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" let g:go_fmt_fail_silently = 1
+" Plug 'zchee/deoplete-go'           " Superseded by coc.vim
 
 " Color scheme
 Plug 'w0ng/vim-hybrid'
@@ -47,16 +50,18 @@ Plug 'junegunn/fzf.vim'
 
 " Other
 " ============================
-Plug 'majutsushi/tagbar'               " Shows functions in easy menu
+Plug 'majutsushi/tagbar'               " Shows functions/classes in easy menu
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_show_linenumbers = 2
+
 Plug 'tpope/vim-commentary'            " Easy comment/uncommand
 Plug 'rhysd/conflict-marker.vim'       " Hilighting for merge conflicts from git
 Plug 'nathanaelkane/vim-indent-guides' " Color coding for indentation
 Plug 'osyo-manga/vim-over'             " Shows matches for :s/ as typed
-" Better Completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'bling/vim-airline'               " Pretty statusline
-Plug 'wellle/targets.vim'              " Better text objects
+let g:airline_powerline_fonts = 1
 
+Plug 'wellle/targets.vim'              " Better text objects
 Plug 'tpope/vim-surround'              " For editing inside parens, tags, etc
 Plug 'tpope/vim-repeat'                " Better repeat functionality for plugins
 Plug 'tpope/vim-fugitive'              " Git integration. Blame, diff etc
@@ -69,44 +74,76 @@ Plug 'tpope/vim-abolish'
 
 " Runs linters automatically. Shows indicator in gutters
 Plug 'w0rp/ale'
-Plug 'airblade/vim-gitgutter'          " Shows git modification artifacts in gutter
-
-" Better clipboard perf. Changes d to 'delete', m to 'move' or cut
-Plug 'svermeulen/vim-easyclip'
-
-Plug 'Shougo/denite.nvim'
-
-call plug#end()
-
-" *****************************************************************************
-" Plugin Config
-" *****************************************************************************
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_show_linenumbers = 2
-
-let g:deoplete#enable_at_startup = 1
-inoremap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
-let g:airline_powerline_fonts = 1
-
-let g:go_fmt_fail_silently = 1
-
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
 let g:ale_linters = {'go': ['go build', 'gometalinter --disable=golint --disable=gocyclo -j 8 --fast'], 'python': ['flake8', 'pylint']}
 let g:ale_python_flake8_options = '--ignore=E501'
 let g:airline#extensions#ale#enabled = 1
 
+Plug 'airblade/vim-gitgutter'          " Shows git modification artifacts in gutter
+
+" Better clipboard perf. Changes d to 'delete', m to 'move' or cut
+Plug 'svermeulen/vim-easyclip'
 let g:EasyClipUseSubstituteDefaults = 1
 nmap <c-w> <plug>EasyClipSwapPasteBackwards
 nmap <c-e> <plug>EasyClipSwapPasteForward
+
+" Completion
+" ============================
+
+" Disabled while trialing coc.nvim
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" let g:deoplete#enable_at_startup = 1
+" inoremap <silent><expr> <TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ <SID>check_back_space() ? "\<TAB>" :
+" \ deoplete#mappings#manual_complete()
+" function! s:check_back_space() abort "{{{
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction"}}}
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+call plug#end()
+
+" *****************************************************************************
+" Plugin Config
+" *****************************************************************************
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufWinEnter *.jinja2 setfiletype jinja
@@ -136,6 +173,8 @@ set wildmode=list:longest,full
 set wildignore=*.o,*~,*.pyc,*.pyo
 set wildignore+=.git\*,.hg\*,.svn\*,node_modules,processed 
 set wildignorecase        " Ignore case in wildmode
+set completeopt-=preview  " Disable the preview window on completeion
+set hidden                "  hides buffers instead of closing them
 
 set history=1000
 set autoread             
@@ -147,6 +186,9 @@ set clipboard=unnamedplus " Copy to system clipboard by default
 set ruler                 " Always show current position in bottom right of screen
 set number                " And line numbers
 set cmdheight=2
+set updatetime=300
+set shortmess+=c          " don't give |ins-completion-menu| messages.
+set signcolumn=yes        " always show signcolumns
 set autowrite
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l    " What motions jump to next line if we're at EOL
