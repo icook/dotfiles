@@ -11,48 +11,36 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 plugins=(git debian kubectl pass kube-ps1)
 
-WORKON_HOME=$HOME/.virtualenvs
 export GOPATH=$HOME/programming/go
-# export GO111MODULE=on
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin:$GOPATH/bin:$ZSH/bin:$HOME/dotfiles/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$HOME/.npm-global/bin:/usr/local/go/bin:$HOME/.yarn/bin:$HOME/.krew/bin
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin:$GOPATH/bin:$ZSH/bin:$HOME/dotfiles/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$HOME/.npm-global/bin:/usr/local/go/bin:$HOME/.yarn/bin:$HOME/.krew/bin:/snap/bin
 source $ZSH/oh-my-zsh.sh
-
-# Pass config options
-# export PASSWORD_STORE_CHARACTER_SET_NO_SYMBOLS=true
-export PASSWORD_STORE_GENERATED_LENGTH=16
-# export PASSWORD_STORE_CHARACTER_SET='[:alnum:]'
 
 # add kube_ps1 to prompt
 PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${git_branch}${venv_prompt}\$(kube_ps1)
 ╰─%B${user_symbol}%b "
 RPROMPT="%* %B${return_code}%b"
 
+# ALIASES
+# =============================================================================
 alias pkilla="pkill -fe --signal 9"
 alias ag="nocorrect noglob ag --smart-case --context"
-
-alias minikube="/home/icook/.minikube-ingress-dns/minikube-ingress-dns-ubuntu16"
-export MINIKUBE_INGRESS_DNS_DOMAIN="minikube"
 alias rl=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias vzsh="vim ~/.zshrc"
 alias gaa='git add -A && git status'
+alias vim="nvim"
+# (c)o(p)y (l)ast (c)ommand, for documentation building
+alias cplc='history | tail -n 1 | sed "s/[[:digit:]]*  //" | sed "s/^#//" | xclip'
 
 if type "rustc" > /dev/null; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
-# Customize to your needs...
-export ANDROID_HOME=/home/icook/Android/Sdk/
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 # Activate pyenv if exists
 if type "pyenv" > /dev/null; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
-alias vim="nvim"
-# (c)o(p)y (l)ast (c)ommand, for documentation building
-alias cplc='history | tail -n 1 | sed "s/[[:digit:]]*  //" | sed "s/^#//" | xclip'
 export DOCKER_BUILDKIT=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
