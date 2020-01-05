@@ -1,5 +1,6 @@
 #!/bin/bash -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 mkdir ~/.config/nvim/
 ln -fs $DIR/nvimrc ~/.config/nvim/init.vim
 

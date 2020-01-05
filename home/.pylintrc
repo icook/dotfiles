@@ -1,4 +1,6 @@
 disable=
+    bad-continuation,
+    line-too-long,
     too-many-instance-attributes,
     len-as-condition,
     too-few-public-methods,
