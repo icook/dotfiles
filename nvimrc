@@ -157,7 +157,7 @@ nnoremap <C-p> :Files<CR>
 nnoremap <C-y> :History<CR>
 nnoremap <C-t> :Tags<CR>
 nnoremap <C-q> :Ag<CR>
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag -l -g "" --hidden --path-to-ignore ~/.ignore'
 
 " Lots and lots of general setup
 """"""""""""""""""""""""""""""""""""""

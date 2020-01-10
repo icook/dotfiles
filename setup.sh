@@ -8,5 +8,6 @@ ln -fs $DIR/home/.gitconfig ~/.gitconfig
 ln -fs $DIR/home/.zshrc ~/.zshrc
 ln -fs $DIR/home/.pylintrc ~/.pylintrc
 ln -fs $DIR/home/.gitignore_global ~/.gitignore_global
+ln -fs $DIR/home/.ignore ~/.ignore
 
 ln -fs $DIR/bin/* ~/bin/

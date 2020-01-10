@@ -1,5 +1,5 @@
 .vim
-.ignore
+/.ignore
 .ropeproject
 .DS_Store
 tags

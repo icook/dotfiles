@@ -23,7 +23,7 @@ RPROMPT="%* %B${return_code}%b"
 # ALIASES
 # =============================================================================
 alias pkilla="pkill -fe --signal 9"
-alias ag="nocorrect noglob ag --smart-case --context"
+alias ag="nocorrect noglob ag --smart-case --context --hidden --path-to-ignore ~/.ignore"
 alias rl=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias vzsh="vim ~/.zshrc"
 alias gaa='git add -A && git status'
