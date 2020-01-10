@@ -36,8 +36,8 @@ Plug 'rust-lang/rust.vim'
 " Plug 'sebastianmarkow/deoplete-rust' " Autocomplete for Rust
 
 " Go
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" let g:go_fmt_fail_silently = 1
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.21'}
+let g:go_fmt_fail_silently = 1
 " Plug 'zchee/deoplete-go'           " Superseded by coc.vim
 
 " Color scheme
@@ -66,6 +66,7 @@ Plug 'tpope/vim-surround'              " For editing inside parens, tags, etc
 Plug 'tpope/vim-repeat'                " Better repeat functionality for plugins
 Plug 'tpope/vim-fugitive'              " Git integration. Blame, diff etc
 Plug 'shumphrey/fugitive-gitlab.vim'   " Let fugitive.vim open gitlab projects
+Plug 'tpope/vim-rhubarb'               " Let fugitive.vim open github projects
 Plug 'jamessan/vim-gnupg'              " Editing gpg files seamless
 " Some useful commands, mainly moving file easily
 Plug 'tpope/vim-eunuch'
@@ -76,7 +77,7 @@ Plug 'tpope/vim-abolish'
 Plug 'w0rp/ale'
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
-let g:ale_linters = {'go': ['go build', 'gometalinter --disable=golint --disable=gocyclo -j 8 --fast'], 'python': ['flake8', 'pylint']}
+let g:ale_linters = {'python': ['flake8', 'pylint']}
 let g:ale_python_flake8_options = '--ignore=E501'
 let g:airline#extensions#ale#enabled = 1
 
