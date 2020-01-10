@@ -1,7 +1,0 @@
-#!/bin/bash
-export XAUTHORITY=/home/icook/.Xauthority
-export DISPLAY=:0
-
-/usr/bin/xset r rate 350 35
-xmodmap /home/icook/.Xmodmap
-# sudo -u icook /usr/bin/notify-send -i info "Remapping done"
