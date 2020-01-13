@@ -159,6 +159,9 @@ nnoremap <C-y> :History<CR>
 nnoremap <C-t> :Tags<CR>
 nnoremap <C-q> :Ag<CR>
 let $FZF_DEFAULT_COMMAND = 'ag -l -g "" --hidden --path-to-ignore ~/.ignore'
+let g:loaded_sql_completion = 0
+" Move it away from <C-c> which kills perf exiting insert mode
+let g:ftplugin_sql_omni_key = '<C-j>'
 
 " Lots and lots of general setup
 """"""""""""""""""""""""""""""""""""""
@@ -201,6 +204,7 @@ set incsearch             " search as you type
 set lazyredraw            " Don't redraw while executing macros 
 set showmatch             " Show matching brackets when text indicator is over them
 set timeoutlen=500
+set ttimeoutlen=0
 set background=dark
 set t_Co=256              " Enable full color terminal
 set fileformats=unix,dos,mac " Use Unix as the standard file type
