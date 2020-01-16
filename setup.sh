@@ -1,6 +1,9 @@
 #!/bin/bash -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+mkdir ~/.config/terminator/
+ln -fs $DIR/home/.config/terminator/config ~/.config/terminator/config
+
 mkdir ~/.config/nvim/
 ln -fs $DIR/nvimrc ~/.config/nvim/init.vim
 
