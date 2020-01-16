@@ -1,8 +1,14 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore_global
+    pager = "diff-so-fancy | less --tabs=4 -RFX"
 [color]
 	ui = true
+[color.diff-highlight]
+    oldNormal    = "red bold"
+    oldHighlight = "red bold #340000"
+    newNormal    = "green bold"
+    newHighlight = "green bold #33321A"
 [user]
 	name = Isaac Cook
 	email = isaac@simpload.com
@@ -10,7 +16,7 @@
 [alias]
     l = log --decorate --graph --date=relative --pretty=\"format:%ad %C(yellow)%h%C(green)%d%Creset%n%C(white)%B%Creset\"
     rec = !git --no-pager log -10 --decorate --graph --date=relative --pretty=\"format:%ad %C(yellow)%h%C(green)%d%Creset%n%C(white)%B%Creset\"
-    taglist = tag -l -n1
+    taglist = tag -l -n1 --no-pager
     slist = !git --no-pager stash list --decorate --pretty=\"format:%C(yellow)->%C(red) %gd%Creset%x09%ar%x09%d%n%C(white)%B%Creset\"
     ssave = stash save
     spop = "!f() { git --no-pager stash pop stash@{$1} -p --stat; }; f"
