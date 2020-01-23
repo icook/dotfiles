@@ -89,6 +89,8 @@ fi
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
 export PATH=$PY_USER_BIN:$PATH
 
+[ -d ~/.poetry ] && export PATH=$HOME/.poetry/bin:$PATH
+
 # Go *********************************
 export GOPATH=$HOME/programming/go
 export PATH=$PATH:$GOPATH/bin
