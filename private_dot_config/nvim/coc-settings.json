@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "python3.7",
+    "suggest.fixInsertedWord": false,
+    "suggest.floatEnable": false,
+    "suggest.triggerAfterInsertEnter": true
+}

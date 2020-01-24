@@ -1,0 +1,9 @@
+.vim
+/.ignore
+.ropeproject
+.DS_Store
+tags
+*~
+.project
+.cproject
+tags.lock
