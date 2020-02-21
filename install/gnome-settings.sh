@@ -9,5 +9,7 @@ make install
 cd ..
 rm -rf tmp
 
+dconf write /org/gnome/shell/extensions/dash-to-panel/show-window-previews false
+
 # gnome-shell --replace
 # gnome-shell-extension-tool -e dash-to-panel
