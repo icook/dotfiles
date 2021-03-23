@@ -1,4 +1,5 @@
 .vim
+.idea
 /.ignore
 .ropeproject
 .DS_Store

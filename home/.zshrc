@@ -1,18 +1,10 @@
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$HOME/.dotfiles/bin
-export PATH=$PATH:$HOME/.cargo/bin
-# export PATH=$PATH:$HOME/.pyenv/bin
-export PATH=$PATH:$HOME/.npm-global/bin
-# export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/.yarn/bin
-export PATH=$PATH:$HOME/.krew/bin
-
 source ~/.dotfiles/antigen.zsh
 
 antigen use oh-my-zsh
 
 antigen bundle git
 antigen bundle debian
+antigen bundle gopass
 antigen bundle pass
 antigen bundle kube-ps1
 antigen bundle taskwarrior
@@ -26,6 +18,8 @@ antigen bundle history
 
 antigen bundle andrewferrier/fzf-z
 FZFZ_SUBDIR_LIMIT=0
+# antigen bundle Tarrasch/zsh-autoenv
+# AUTOENV_FILE_LEAVE=.autoenv.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle supercrabtree/k
@@ -34,6 +28,13 @@ antigen bundle zdharma/zsh-diff-so-fancy
 antigen theme bira
 
 antigen apply
+
+export PATH=$HOME/bin:$PATH
+export PATH=$PATH:$HOME/.dotfiles/bin
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.npm-global/bin
+export PATH=$PATH:$HOME/.yarn/bin
+export PATH=$PATH:$HOME/.krew/bin
 
 # add kube_ps1 to prompt
 PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${git_branch}${venv_prompt}\$(kube_ps1)
@@ -45,6 +46,11 @@ FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {} | head -500'"
 FZF_CTRL_R_OPTS="--preview 'echo {} | bat -l bash -pp --color=always' --preview-window down:3:wrap"
 FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
+# Completion
+# =============================================================================
+
+# source <(gopass completion zsh | head -n -1 | tail -n +2)
+# compdef _gopass gopass
 
 # Experimental
 # =============================================================================
@@ -54,8 +60,9 @@ FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 # ALIASES
 # =============================================================================
 cdiff () {
-    diff -u $@ | diff-so-fancy | less
+    diff -U 25 $@ | diff-so-fancy | less
 }
+# alias pass="gopass"
 alias pkilla="pkill -fe --signal 9"
 alias ag="nocorrect noglob ag --smart-case --context --hidden --path-to-ignore ~/.ignore"
 alias rl=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
@@ -103,5 +110,8 @@ export DOCKER_BUILDKIT=1
 # Use gpg as the ssh-agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin

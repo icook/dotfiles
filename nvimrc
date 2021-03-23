@@ -1,3 +1,4 @@
+" Initialize plug (https://github.com/junegunn/vim-plug)
 call plug#begin('~/.nvil_silently = 1m/plugged')
 
 " *****************************************************************************
@@ -13,8 +14,24 @@ Plug 'boeckmann/vim-freepascal'
 Plug 'cespare/vim-toml'
 
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'mxw/vim-jsx'
+
+" JSX (React)
+" Disabled, maybe buggy as per https://stackoverflow.com/questions/3223695/javascript-indentation-in-vim#comment66976236_18670672
+" Plug 'mxw/vim-jsx'
+Plug 'othree/yajs.vim'
+" TypeScript
+Plug 'leafgarland/typescript-vim'
+
 let g:jsx_ext_required = 0
+
+" Javascript
+Plug 'pangloss/vim-javascript'
+
+" Terraform (.tf)
+Plug 'hashivim/vim-terraform'
+
+" Jsonnet (.jsonnet)
+Plug 'google/vim-jsonnet'
 
 " Infrequently used, but good to have on hand
 " Plug 'google/vim-jsonnet'
@@ -26,6 +43,7 @@ let g:jsx_ext_required = 0
 " Python
 " Plug 'zchee/deoplete-jedi'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'psf/black'
 
 " HTML
 " Hilight matching HTML tags
@@ -36,8 +54,9 @@ Plug 'rust-lang/rust.vim'
 " Plug 'sebastianmarkow/deoplete-rust' " Autocomplete for Rust
 
 " Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.21'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'tag': 'v1.24'}
 let g:go_fmt_fail_silently = 1
+let g:go_doc_popup_window = 1
 " Plug 'zchee/deoplete-go'           " Superseded by coc.vim
 
 " Color scheme
@@ -55,12 +74,15 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_show_linenumbers = 2
 
 Plug 'tpope/vim-commentary'            " Easy comment/uncommand
+autocmd FileType sql setlocal commentstring=--\ %s
 Plug 'rhysd/conflict-marker.vim'       " Hilighting for merge conflicts from git
 Plug 'nathanaelkane/vim-indent-guides' " Color coding for indentation
 Plug 'osyo-manga/vim-over'             " Shows matches for :s/ as typed
 Plug 'bling/vim-airline'               " Pretty statusline
 let g:airline_powerline_fonts = 1
+set statusline^=%{coc#status()}
 
+Plug 'lambdalisue/suda.vim'            " Easy sudo writing
 Plug 'wellle/targets.vim'              " Better text objects
 Plug 'tpope/vim-surround'              " For editing inside parens, tags, etc
 Plug 'tpope/vim-repeat'                " Better repeat functionality for plugins
@@ -77,7 +99,9 @@ Plug 'tpope/vim-abolish'
 Plug 'w0rp/ale'
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
-let g:ale_linters = {'python': ['flake8', 'pylint']}
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint', 'mypy'],
+\}
 let g:ale_python_flake8_options = '--ignore=E501'
 let g:airline#extensions#ale#enabled = 1
 
@@ -146,7 +170,9 @@ call plug#end()
 " Plugin Config
 " *****************************************************************************
 
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType jsonnet setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufWinEnter *.jinja2 setfiletype jinja
 autocmd FileType python syn keyword pythonDecorator True None False self
 autocmd FileType python setlocal textwidth=0 
@@ -171,6 +197,10 @@ syntax enable
 let mapleader = " "
 let g:mapleader = " "
 
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+set exrc                  " Load local .vimrc for specific projects
 set listchars=tab:>-      " Make tab characters obvious
 set wildmenu              " Make tab completion show options somewhat like zsh
 set wildmode=list:longest,full
@@ -255,6 +285,7 @@ nnoremap <leader><space> :q<CR>
 " =================================================
 map <F5> :so $MYVIMRC<CR>
 map <F6> :e $MYVIMRC<CR>
+nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Normal mode
 " =================================================

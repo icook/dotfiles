@@ -1,7 +1,9 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore_global
-    pager = "diff-so-fancy | less --tabs=4 -RFX"
+    ; pager = "diff-so-fancy | less --tabs=4 -RFX"
+[diff]
+    renameLimit = 2048
 [color]
 	ui = true
 [color.diff-highlight]
@@ -13,6 +15,8 @@
 	name = Isaac Cook
 	email = isaac@simpload.com
 	signingkey = "A92C2CE6053917B3A740D796DA5B8059A8DB7367"
+	; email = isaac@qtrade.io
+	; signingkey = "0xDA5B8059A8DB7367 "
 [alias]
     l = log --decorate --graph --date=relative --pretty=\"format:%ad %C(yellow)%h%C(green)%d%Creset%n%C(white)%B%Creset\"
     rec = !git --no-pager log -10 --decorate --graph --date=relative --pretty=\"format:%ad %C(yellow)%h%C(green)%d%Creset%n%C(white)%B%Creset\"
