@@ -42,8 +42,8 @@ Plug 'google/vim-jsonnet'
 
 " Python
 " Plug 'zchee/deoplete-jedi'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'psf/black'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'psf/black'
 
 " HTML
 " Hilight matching HTML tags
@@ -99,9 +99,9 @@ Plug 'tpope/vim-abolish'
 Plug 'w0rp/ale'
 let g:ale_sign_column_always = 1
 let g:ale_set_loclist = 0
-let g:ale_linters = {
-\   'python': ['flake8', 'pylint', 'mypy'],
-\}
+" let g:ale_linters = {
+" \   'python': ['flake8', 'pylint', 'mypy'],
+" \}
 let g:ale_python_flake8_options = '--ignore=E501'
 let g:airline#extensions#ale#enabled = 1
 
